@@ -23,13 +23,16 @@ import info from '../assets/texts/info.json'
 </script>
 
 <template>
-  <div v-if="userTrue || userTrue === null">
-    <h1 class="title">הפרוייקט הראשון שלי בסיירים</h1>
-    <h3 class="subtitle">לומדת שרוך מפ"ל</h3>
-    <img src="../assets/srochim.jpg" alt="sroch" class="sroch">
-    <div class="facts">
-      <facts-card v-for="(fact, index) in info.factsArray" :key="index" :fact="fact"></facts-card>
+  <div>
+    <div class="main-project" v-if="userTrue || userTrue === null">
+      <h1 class="title">הפרוייקט הראשון שלי בסיירים</h1>
+      <h3 class="subtitle">לומדת שרוך מפ"ל</h3>
+      <img src="../assets/srochim.jpg" alt="sroch" class="sroch">
+      <div class="facts">
+        <facts-card v-for="(fact, index) in info.factsArray" :key="index" :fact="fact"></facts-card>
+      </div>
     </div>
+    <p class="problem">אנא הפוך את הטלפון</p>
   </div>
 </template>
 
@@ -49,10 +52,37 @@ body {
 }
 
 .sroch {
-  width: 15vw;
+  width: 25vw;
 }
 
 .facts {
   display: flex;
 }
+
+.problem {
+  display: none;
+  font-size: 2.2rem;
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .sroch {
+    width: 45vw;
+  }
+  .facts {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 850px) and (orientation: landscape) {
+  .problem {
+    display: block;
+  }
+  .main-project {
+    display: none;
+  }
+  .subtitle {
+  color: white;
+  }
+}
+
 </style>
